@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz17</title>
+</head>
+<body>
+    <input type="number" id="input1" placeholder="첫 번째 숫자">
+    <input type="number" id="input2" placeholder="두 번째 숫자">
+    <button type="button" onclick="multiply();">곱하기</button>
+    <p id="result"></p>
+
+    <script>
+        const input1 = document.getElementById('input1');
+        const input2 = document.getElementById('input2');
+        const result = document.getElementById('result');
+        function multiply(){
+            const value1 = input1.value;
+            const value2 = input2.value;
+            const resultVal = value1 * value2;
+            result.textContent = `${value1} * ${value2} = ${resultVal}`;
+        }
+    </script>
+</body>
+</html>
