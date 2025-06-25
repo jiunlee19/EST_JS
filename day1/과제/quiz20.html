@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz20</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <button type="button" onclick="clickBtn();">클릭!</button>
+    <p id="textarea"></p>
+
+    <script>
+        const name = document.getElementById('name');
+        let textarea = document.getElementById('textarea');
+        
+
+        function clickBtn(){
+            const userName = name.value;
+            console.log(userName);
+            
+            textarea.textContent = `환영합니다, ${userName}님!`;
+        }
+    </script>
+</body>
+</html>

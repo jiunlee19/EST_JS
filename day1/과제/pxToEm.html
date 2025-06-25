@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+
+            background-image: url("https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGxhbmRzY2FwZXxlbnwwfHwwfHx8MA%3D%3D");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container{
+            width: 300px;
+            height: 300px;
+
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(0.2rem);
+            border: 2px solid #fff;
+            border-radius: 30px;
+            padding: 50px 30px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            position: relative;
+            left: 50vw;
+            top: 50vh;
+            transform: translate(-50%,-50%);
+        }
+        h1{
+            text-align: center;
+        }
+        button{
+            background-color: lightgreen;
+            border: 2px solid gray;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #fff;
+            color: lightgreen;
+        }
+        #result {
+            font-weight: bold;
+            text-align: center;
+        }
+        #targetPx{
+            color: white;
+        }
+        #resultRem{
+            color: orange;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>em 계산기</h1>
+        <label for="baseFont">기본 폰트(px)</label>
+        <input type="number" id="baseFont" placeholder="base px">
+        <label for="targetFont">원하는 px값</label>
+        <input type="number" id="targetFont" placeholder="target px">
+        <!-- <input type="number" id="targetPx" placeholder="target px"> -->
+        <button type="button" onclick="pxToEm();">em 값 계산</button>
+        
+        <p id="result">
+            <span id="targetPx"></span>
+            <span id="resultRem"></span>
+        </p>
+    </div>
+
+    <script>
+        const input1 = document.getElementById('baseFont');
+        const input2 = document.getElementById('targetFont');
+        
+        const targetPx = document.getElementById('targetPx');
+        const resultRem = document.getElementById('resultRem');
+
+        function pxToEm(){
+            const baseFont = input1.value;
+            const targetFont = input2.value;
+
+            const emFont= targetFont/baseFont;
+            targetPx.textContent = `${targetFont}px =`;
+            resultRem.textContent = `${emFont}em`;
+        }
+
+    </script>
+</body>
+</html>
