@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener</title>
+</head>
+<body>
+    <h1>버튼을 클릭하세요</h1>
+    <input type="color" id="userColor">
+    <input type="text" id="input">
+    <button type="button" id="btn">클릭</button>
+    <p id="result"></p>
+
+    <script>
+        const input = document.getElementById('input');
+        const btn = document.getElementById('btn');
+        const result = document.getElementById('result');
+        const userColor = document.getElementById('userColor');
+
+        // 1. 버튼을 클릭하면 printValue()를 호출하겠다.
+        //<button>, 이벤트: 클릭, printValue()호출
+        /*btn.addEventListener('click', function(e){
+            //console.log('hello');
+
+            // 2. 버튼을 클릭하면, 사용자가 입력한 글을 #result에 출력하겠다.
+            // <button>, 클릭, <input> value를 p#result에 출력
+            result.textContent = input.value;
+
+            console.log(e.target); //<button>
+            console.log(e.currentTarget); //<button>   
+        });*/
+        
+        document.body.addEventListener('click',function(e){
+            console.log(e.target); //click 이벤트가 일어나는 곳
+            console.log(e.currentTarget); //addEventListener 앞에 있는 공간. 이벤트 주는 곳...?
+            //target vs currentTarget
+            //이벤트 자식요소에 위임하지 않기 위함??? 
+        })
+
+        input.addEventListener('input',function(e){
+            result.textContent = e.currentTarget.value; //currentTarget이 정확, 하지만 input태그에는 자식요소가 없으므로 target 가능
+        })
+
+        //컬러박스에 사용자가 고르면, 그 값을 result에 출력
+        userColor.addEventListener('input',function(e){
+            result.textContent = e.currentTarget.value;
+            document.body.style.backgroundColor = e.currentTarget.value;
+        })
+
+        /* input, change 이벤트 차이 */
+        /* 과제 bodyChangeColor.html 
+        select 태그 이용해서 색상을 여러가지 지정.
+        select 선택하면, body의 배경색이 바뀌도록*/
+
+        /*
+        function printValue(){
+            console.log('hello');
+        }*/
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보</title>
+</head>
+<body>
+    <button type="button" onclick="gamePlay('가위');">가위</button>
+    <button type="button" onclick="gamePlay('바위');">바위</button>
+    <button type="button" onclick="gamePlay('보');">보</button>
+
+    <p id="result"></p>
+
+    <script>
+        const rsp = ['가위','바위','보'];
+
+        const p = document.getElementById('result');
+        //함수 gamePlay() 가위바위보 시작
+        function gamePlay(input1){
+
+            let randNum = Math.floor(Math.random() * rsp.length);
+            let computerChoice = rsp[randNum];
+            
+            let message = '';
+            const isWin = 
+            (input1==='가위' && computerChoice==='바위') ||
+            (input1==='바위' && computerChoice==='보') || 
+            (input1==='보' && computerChoice==='가위');         
+
+            console.log(input1);
+            if(input1===computerChoice) message = '비겼습니다.';
+            else if(isWin) message = '컴퓨터가 이겼습니다.';
+            else message = '당신이 이겼습니다.';
+            p.innerHTML = `당신:${input1}, 컴퓨터:${computerChoice}<br> 결과: ${message}`
+        }
+    </script>
+</body>
+</html>
