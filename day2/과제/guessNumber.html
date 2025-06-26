@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess a Number</title>
+</head>
+<body>
+    <div class="container">
+        <p>Guess a Number (1~10)</p>
+        <input type="number" id="userInput">
+        <button id="submit">결과보기</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const randomNum = Math.floor(Math.random()*11);
+        console.log(randomNum);
+
+        const input = document.getElementById('userInput');
+        const btn = document.getElementById('submit');
+        const result = document.getElementById('result');
+
+        btn.addEventListener('click', function(){
+            let message = '';
+            const userInput = parseInt(input.value);
+
+            if(0>userInput || 10<userInput){
+                message='범위 밖 숫자. 다시 입력하세요.'
+            }
+            else if(userInput === randomNum) {
+                message = '정답입니다!';
+            }
+            else if(Math.abs(randomNum-userInput)<=2) {
+                message='조금 ';
+                if(randomNum>userInput) message+='작아요';
+                else message+='커요';
+            }
+            else{
+                message='너무 ';
+                if(randomNum>userInput) message+='작아요';
+                else message+='커요';
+            }
+
+            result.textContent = `${userInput} ${message}`;
+        })
+    </script>
+</body>
+</html>
