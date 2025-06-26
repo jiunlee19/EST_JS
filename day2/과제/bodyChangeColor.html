@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백그라운드 색상 변경</title>
+</head>
+<body>
+    <div class="container">
+        <label for="colors">색상을 골라보세요.</label>
+        <select name="color-option" id="colors">
+            <option value="#fff" selected>하얀색</option>
+            <option value="#f00">빨간색</option>
+            <option value="#ffa500">주황색</option>
+            <option value="#ff0">노랑색</option>
+            <option value="#008000">초록색</option>
+            <option value="#00f">파란색</option>
+            <option value="#000080">남색</option>
+            <option value="#800080">보라색</option>
+        </select>
+    </div>
+
+    <script>
+        const selectColor = document.getElementById('colors');
+
+        selectColor.addEventListener('change', function(e){
+            document.body.style.backgroundColor = e.target.value;
+        })
+    </script>
+</body>
+</html>
