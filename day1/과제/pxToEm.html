@@ -83,10 +83,11 @@
         const resultRem = document.getElementById('resultRem');
 
         function pxToEm(){
-            const baseFont = input1.value;
-            const targetFont = input2.value;
+            const baseFont = Number(input1.value);
+            const targetFont = Number(input2.value);
 
             const emFont= targetFont/baseFont;
+            console.log(typeof targetFont, typeof baseFont, typeof emFont);
             targetPx.textContent = `${targetFont}px =`;
             resultRem.textContent = `${emFont}em`;
         }
