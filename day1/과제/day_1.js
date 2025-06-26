@@ -71,8 +71,6 @@ const num2 = 5;
 const resultVal = num1+num2;
 console.log(`${num1}+${num2}=${resultVal}`);
 
-let input1;
-let input2;
 function sum(input1, input2){
     const resultVal = input1+input2;
     console.log(`${input1}+${input2}=${resultVal}`);
