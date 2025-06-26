@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보</title>
+</head>
+<body>
+    <button type="button">가위</button>
+    <button type="button">바위</button>
+    <button type="button">보</button>
+    
+    <!-- 연습버튼 -->
+    <button type="button" onclick="inputCoin(1000,3);">출력하기</button>
+
+    <script>
+        //함수 gamePlay() 가위바위보 시작
+        function inputCoin(coin, num=1){
+            console.log(`${coin}원이 ${num}개 입금되었습니다.`);
+            /* 총 합 출력해주기 */
+            return `총 ${coin*num}원이 입금되었습니다.`;
+
+        }
+
+        const user1 = inputCoin(1000,5);
+        console.log(user1);
+
+        let user2 = 1000;
+        inputCoin(user2, 5);
+
+        inputCoin(500,3); //500
+        inputCoin(100,2); //100
+        inputCoin(50); //10
+        
+    </script>
+</body>
+</html>
