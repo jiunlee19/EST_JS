@@ -71,6 +71,12 @@ const num2 = 5;
 const resultVal = num1+num2;
 console.log(`${num1}+${num2}=${resultVal}`);
 
+/*
+let input1;
+let input2;
+function 속 input1, inpu2 파라미터들은 
+위의 let으로 선언한 input1, input2 변수와 다르므로, 선언 X 
+*/
 function sum(input1, input2){
     const resultVal = input1+input2;
     console.log(`${input1}+${input2}=${resultVal}`);
