@@ -14,7 +14,7 @@
     </div>
 
     <script>
-        const randomNum = Math.floor(Math.random()*11);
+        const randomNum = Math.ceil(Math.random()*10);
         console.log(randomNum);
 
         const input = document.getElementById('userInput');
@@ -24,24 +24,23 @@
         btn.addEventListener('click', function(){
             let message = '';
             const userInput = parseInt(input.value);
+            const diff = Math.abs(randomNum - userInput);
 
             if(0>userInput || 10<userInput){
                 message='범위 밖 숫자. 다시 입력하세요.'
             }
-            else if(userInput === randomNum) {
+            else if(!diff) {
                 message = '정답입니다!';
             }
-            else if(Math.abs(randomNum-userInput)<=2) {
-                message='조금 ';
-                if(randomNum>userInput) message+='작아요';
-                else message+='커요';
-            }
             else{
-                message='너무 ';
-                if(randomNum>userInput) message+='작아요';
-                else message+='커요';
+                if(diff<=2) {
+                    message='조금 ';
+                }
+                else{
+                    message='너무 ';
+                }
+                randomNum>userInput ? message+='작아요' : message+='커요';
             }
-
             result.textContent = `${userInput} ${message}`;
         })
     </script>
