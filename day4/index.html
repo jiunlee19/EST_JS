@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>Html</li>
+        <li>Css</li>
+        <li>Javascript</li>
+        <li>Scss</li>
+        <li>jQuery</li>
+    </ul>
+
+    <script>
+        const li = document.querySelectorAll('li');
+        //for문으로 li의 컨테츠를 콘솔에 찍기
+        for(let i=0;i<li.length;i++){
+            console.log(li[i].textContent);
+        }
+        //forEach문으로 li 컨텐츠 찍기
+        li.forEach((element, idx) => {
+            console.log(`${idx+1}. ${element.textContent}`);
+        });
+        //querySelector와 querySelectorAll
+        //element와 element.textContent
+        //노드트리 분석, 돔트리 ...?
+        //돔트리 구조 만들고 CSSom 트리도 만든다.
+        //배열 구조가 아니다. 때문에 filter, map 사용 불가
+        //때문에 배열 구조로 만들기도 한다. Array.from()이나 
+    </script>
+</body>
+</html>
