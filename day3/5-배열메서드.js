@@ -1,7 +1,5 @@
 //Array.proptotype.method()
 
-
-
 const fruits = ['apple','mango','banana'];
 fruits[1]='cherry';
 console.log(fruits);
@@ -34,7 +32,7 @@ console.log(newArr);
 //차이: 
 
 let whosBig = Math.max(arr1);
-console.log(whosBig);
+console.log(whosBig); // NaN
 whosBig = Math.max(...arr1); // spread 연산자(전개) (중요)
 console.log(whosBig);
 
