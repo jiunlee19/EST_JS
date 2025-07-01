@@ -19,7 +19,6 @@ const five = numbers2
 .split("")
 .filter(number => number === '5').length;
 console.log(five);
-console.log('!!!',numbers2.toString());
 
 // 풀이2
 const five1 = numbers2
