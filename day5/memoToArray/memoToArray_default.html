@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>메모를 배열에 저장하기 예제</title>
+    <link rel="stylesheet" href="css/total.css">
+</head>
+
+<body>
+    <div class="memo-container">
+        <h1>메모를 배열에 저장하기</h1>
+        <form id="memoForm">
+            <input type="text" id="memoInput" placeholder="메모를 입력하세요" required>
+            <button type="submit">추가</button>
+        </form>
+        <ul id="memoList"></ul>
+    </div>
+    <script>
+        let memoList = [];
+        const fm = document.querySelector('#memoForm');
+        const input = document.querySelector('#memoInput');
+        const list = document.querySelector('#memoList');
+        //form type-submit button 누르면 서버로 제출하는 이벤트다.
+        fm.addEventListener('submit',(e)=>{
+            e.preventDefault(); //기본 기능 무효화하는 명령어
+            //(지금은 콘솔내용 떴다가 사라지는거 방지)
+            //<a href="javascript:void(0);"></a>
+            const value = input.value.trim();
+            if(value) {
+                memoList.push(value);
+                renderList();
+            }
+            //input.value='';
+            fm.reset(); //form 안 내용 다 지워짐(form 전용)
+        })
+        function renderList(){
+            list.innerHTML = ''; //ul 태그 초기화
+            
+            memoList.forEach(memo => {
+                const li = document.createElement('li');
+                //이거 위치 왜케 헷갈림?
+                li.textContent = memo;
+                list.appendChild(li);
+            });
+        }
+        console.log(memoList);
+    </script>
+</body>
+
+</html>

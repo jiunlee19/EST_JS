@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cafe 주문 계산하기</title>
+</head>
+<body>
+    <section>
+        <h1>My Cafe 주문 계산기</h1>
+        <form id="cafeOrder">
+            <label for="menu">음료 선택</label>
+            <select name="cafeMenu" id="menu" required>
+                <option value="" disabled selected>---음료를 선택하세요---</option>
+                <!-- <option value="Americano">아메리카노</option>
+                <option value="Latte">카페라떼</option>
+                <option value="Mocha">카페모카</option>
+                <option value="MilkTea">홍차</option>
+                <option value="Juice">오렌지주스</option> -->
+            </select>
+            <br>
+
+            <label for="size">사이즈 선택</label>
+            <select name="drinkSize" id="size" required>
+                <option value="" disabled selected>---사이즈를 선택하세요---</option>
+                <!-- <option value="small">스몰</option>
+                <option value="medium">미디엄</option>
+                <option value="large">라지</option> -->
+            </select>
+            <br>
+
+            <label for="count">수량</label>
+            <input type="number" id="count" required>
+            <br>
+
+            <button type="submit">계산하기</button>
+        </form>
+        <p id="result"></p>
+    </section>
+    
+    <script>
+        const cafeMenu = {
+            Americano:2500, 
+            Latte:3000,
+            Mocha:3500,
+            MilkTea:2000,
+            Juice:2800,
+        }
+        const drinkSize = {
+            small: 0,
+            medium: 1000,
+            large: 2000,
+        }
+
+        const order={menu:'',size:'',count:0};
+        //초기화 필요. count는 어떻게 초기화함?
+        //console.log(cafeMenu[order.menu]);
+        //console.log(drinkSize[order.size]);
+        //console.log(order.count);
+
+        //console.log((cafeMenu[order.menu]+drinkSize[order.size])*order.count);
+
+        function formatNumber(num){
+            const strArr = num.toString().split('');
+            const strLen = strArr.length;
+            for (let i = strLen - 3; i > 0; i -= 3) {
+                strArr.splice(i, 0, ',');
+            }
+            
+            return strArr.join('');
+        }
+
+        const orderMenu = document.querySelector('#menu');
+        const orderSize = document.querySelector('#size');
+        const orderCount = document.querySelector('#count');
+
+        function renderList(){
+
+            for(let menu in cafeMenu){
+                const option = document.createElement('option');
+                option.textContent = `${menu} (₩${formatNumber(cafeMenu[menu])})`;
+                option.value = menu;
+                orderMenu.appendChild(option);
+            }
+            for(let size in drinkSize){
+                const option = document.createElement('option');
+                option.textContent = `${size} (₩${formatNumber(drinkSize[size])})`;
+                option.value = size;
+                orderSize.appendChild(option);
+            }
+        }
+
+        const cafeOrder = document.querySelector('#cafeOrder');
+        cafeOrder.addEventListener('submit',(e)=>{
+            e.preventDefault();
+
+            if(isNaN(Number(orderCount.value)) || orderCount.value <= 0){
+                alert('1잔 이상 입력해주세요');
+                return;
+            }
+            order.menu = orderMenu.value;
+            order.size = orderSize.value;
+            order.count = Number(orderCount.value);
+            
+            let total = (cafeMenu[order.menu]+drinkSize[order.size])*order.count;
+            
+            console.log(total);
+
+            const result = document.getElementById('result');
+            result.textContent = `총 금액: ₩${formatNumber(total)} (${formatNumber(order.count)}잔, ${order.size})`;
+        })
+
+        renderList();
+    </script>
+</body>
+</html>
