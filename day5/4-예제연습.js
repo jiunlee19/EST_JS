@@ -8,6 +8,7 @@ function isValidName(name){
     }
     return targetIdx;
 }
+
 function addFriend(name){
     // 중복 검사
     const targetIdx = isValidName(name);
@@ -20,6 +21,7 @@ function addFriend(name){
         console.log(`${name}이 친구에 추가됐어요`);
     }
 }
+
 function deleteFriend(name){
     //유효성 검사
     const targetIdx = isValidName(name);

@@ -1,12 +1,13 @@
-//friend 1~3
-//name, age, mbti
+function debugFortune() {
+    const fortunes = [
+        "🧩 오늘의 에러는 내일의 힌트가 된다.",
+        "💥 버그? 걱정 마, 네가 성장 중이라는 증거야!",
+        "📈 실패는 흔들릴 뿐, 멈춘 게 아니다.",
+        "😎 코드가 꼬였다고 네 실력도 꼬인 건 아냐."
+    ];
+    const index = Math.floor(Math.random() * fortunes.length);
+    return () => fortunes[index];
+}
 
-const friend1 = {
-    name:'aaa', age:12, mbti:'INTP'}
-const friend2 = {
-    name:'bbb', age:10, mbti:'INFP'}
-const friend3 = {
-    name:'ccc', age:20, mbti:'ESFP'}
-
-const friends = [friend1, friend2, friend3];
-console.log(friends);
+const fortune = debugFortune();
+console.log(fortune());
