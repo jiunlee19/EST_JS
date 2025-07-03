@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dom.css">
+    <title>키보드 이벤트</title>
+</head>
+<body>
+    <main class="keyboard-container">
+        <h1 class="keyboard-title">키보드 이벤트 실습</h1>
+        <section class="keyboard-section">
+            <div class="keyboard-instruction">키보드를 아무거나 눌러보세요!</div>
+            <div class="keyboard-event-info" id="eventInfo">
+                <div>키: <span id="keyName">-</span></div>
+                <div>코드: <span id="keyCode">-</span></div>
+                <div>이벤트 타입: <span id="eventType">-</span></div>
+                <div>Shift: <span id="shiftKey">-</span></div>
+                <div>Ctrl: <span id="ctrlKey">-</span></div>
+                <div>Alt: <span id="altKey">-</span></div>
+                <div>Meta: <span id="metaKey">-</span></div>
+                <!-- mac OS - cmd키 -->
+            </div>
+            <div class="keyboard-history-label">최근 입력한 키</div>
+            <div class="keyboard-history" id="keyHistory"></div>
+        </section>
+    </main>
+
+    <script>
+        function getElements() {
+            const keyName = document.querySelector('#keyName');
+            const keyCode = document.querySelector('#keyCode');
+            const eventType = document.querySelector('#eventType');
+            const shiftKey = document.querySelector('#shiftKey');
+            const ctrlKey = document.querySelector('#ctrlKey');
+            const altKey = document.querySelector('#altKey');
+            const metaKey = document.querySelector('#metaKey');
+            const keyHistory = document.querySelector('#keyHistory');
+
+            return [keyName, keyCode, eventType, shiftKey, ctrlKey,altKey, metaKey,keyHistory];
+        }//이렇게 굳이 묶어주는 이유는?
+        
+        let history = [];
+
+        const [keyName, keyCode, eventType, shiftKey, ctrlKey,altKey, metaKey,keyHistory] = getElements();
+
+        function updateEventInfo(e,type){            
+            keyName.textContent = e.key;
+            keyCode.textContent = e.code;
+            eventType.textContent = e.type;
+            shiftKey.textContent = e.shiftKey ? 'O' : '-';
+            ctrlKey.textContent = e.ctrlKey ? 'O' : '-';
+            altKey.textContent = e.altKey ? 'O' : '-';
+            metaKey.textContent = e.metaKey ? 'O' : '-';
+        }
+
+        function addToHistory(e,type){
+            const display = `<span class="key-item">${e.key}</span>`;
+            history.unshift(display);
+            console.log('history:',history.join(''));
+            if(history.length>20){
+                history.pop();
+            }
+            keyHistory.innerHTML = history.join('');
+            
+        }
+        
+        window.addEventListener('keydown',(e)=>{
+            updateEventInfo(e,'keydown');
+            addToHistory(e,'keyDown');
+
+            if(e.ctrlKey && e.key === 'Enter'){
+                console.log(`Ctrl + Engter 키가 눌렸습니다.`);
+            }
+        })
+    
+    </script>
+</body>
+</html>

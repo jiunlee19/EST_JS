@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dom.css">
+    <title>Document</title>
+    <style>
+        .btn{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="all-container">
+        <div class="menu-container">
+            <button class="btn">
+                <img src="./images/irangi_01.png" alt="irangi">
+            </button>
+            <button class="btn">
+                <img src="./images/irangi_02.png" alt="irangi">
+            </button>
+            <button class="btn">
+                <img src="./images/irangi_03.png" alt="irangi">
+            </button>
+        </div>
+    </div>
+    <ul id="list">
+        <li>Apple</li>
+        <li>Mango</li>
+        <li>Banana</li>
+    </ul>
+    <!-- ul에 클릭이벤트를 추가하여, 현재 클릭된 요소의 컨텐츠가 콘솔에 찍히도록 처리. -->
+
+    <p id="p">
+        Hello world
+        <span>SPAN</span>
+        <strong>STRONG</strong>
+    </p>
+
+    <div id="testBox">
+        <strong>STRONG</strong>
+        <em>EM</em>
+        <p>Paragraph</p>
+    </div>
+    <!-- testBox에 클릭이벤트가 발생하면, 그타넷이 EM일때만 클릭 출력 -->
+
+    <script>
+        const menu = document.querySelector('.menu-container');
+        
+        function menuHandler(e){
+            if(e.target.nodeName === 'BUTTON'){
+                const contents = e.target.innerHTML;
+                console.log(contents);
+            }
+        }
+        menu.addEventListener('click',menuHandler);
+
+        const ul = document.querySelector('#list');
+        ul.addEventListener('click', (e)=> {
+            const content = e.target.textContent;
+            console.log(content);
+        });
+
+        const p = document.querySelector('#p');
+        function pHandler(e){
+            console.log('hello');
+            const isTarget = e.target.nodeName === 'STRONG';
+                console.log(isTarget);
+        }
+        
+        p.addEventListener('click',pHandler);
+        
+        const testBox = document.querySelector('#testBox');
+        function testBoxHandler(e){
+            if(e.target.nodeName === 'EM'){
+                console.log('클릭');
+            }
+        }
+        testBox.addEventListener('click',testBoxHandler);
+    </script>
+</body>
+</html>
+<!-- forEach()는 유일하게 NodeList()가 배열이 아님에도 사용가능 -->
