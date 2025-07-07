@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM traversing</title>
+</head>
+<body>
+    <div class="box" id="parent">
+        <p>First child</p>
+        <button>클릭하세요</button>
+        <p>Third child</p>
+    </div>
+
+    <p id="output"></p>
+
+    <script>
+        const parent = document.getElementById('parent');
+
+        parent.addEventListener('click',(e)=>{
+            const target = e.target;
+            console.log(
+                '1',target.parentElement, //부모요소
+                '2',target.firstElementChild, //첫번째 자식요소
+                '3',target.nextElementSibling, //다음 형제
+                '4',target.previousElementSibling, //이전 형제
+                '5',target.closest('div') //가장 가까운 div요소(상위요소 중)
+            );
+        })
+    </script>
+</body>
+</html>
