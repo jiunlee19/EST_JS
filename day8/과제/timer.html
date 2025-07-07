@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        .box {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <button class="minusBtn">-</button>
+        <div class="timer"></div>
+        <button class="plusBtn">+</button>
+    </div>
+    <div class="box">
+        <button class="startBtn">타이머 시작</button>
+        <button class="resetBtn">타이머 초기화</button>
+    </div>
+    
+    <script>
+        const minusBtn = document.querySelector('.minusBtn');
+        const plusBtn = document.querySelector('.plusBtn');
+        const timer = document.querySelector('.timer');
+        
+        //const startBtn = document.querySelector('.startBtn');
+        //const resetBtn = document.querySelector('.resetBtn');
+
+        let min='00';
+        let sec='00';
+        let timeString = `${min} : ${sec}`;
+        timer.textContent = timeString;
+        
+        /*function timerOnOff(){
+            
+        }*/
+        const timerReset = function(){
+            
+        }
+        function updateTimer(elem){
+            elem.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('minusBtn') && min>0){
+                    min=(parseInt(min)-1).toString();
+                }else if(e.target.classList.contains('plusBtn') && min<60){
+                    min=(parseInt(min)+1).toString();
+                }
+                timer.textContent = `${(min).padStart(2,'0')} : ${(sec).padStart(2,'0')}`;
+            });
+        }
+        updateTimer(minusBtn);
+        updateTimer(plusBtn);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+        }
+
+        .container img {
+            max-width: 100%;
+
+        }
+
+        .detailView {
+            flex: 0 0 auto;
+            width: 300px;
+            position: relative;
+        }
+
+        .description {
+            position: absolute;
+            inset: auto 0 0 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .thumbs {}
+
+        .thumbs img {
+            width: 70px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .thumbs img:hover {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="detailView">
+            <img src="./images/irangi_01.png" alt="Is it hard?" id="img1">
+            <p class="description">Is it hard?</p>
+        </div>
+        <div class="thumbs">
+            <button type="button" data-alt="Dont give up" id="btn1">01</button>
+            <button type="button" data-alt="Coffee" id="btn2">02</button>
+            <button type="button" data-alt="I am angry" id="btn3">03</button>
+            <button type="button" data-alt="walking" id="btn4">04</button>
+            <!-- 이미지로 바꿔서도 해보기 : 과제 -->
+        </div>
+    </div>
+
+    <script>
+        const img1 = document.querySelector('#img1');
+        const text1 = document.querySelector('.description');
+        const btns = document.querySelectorAll('.thumbs button');
+        btns.forEach(btn => {
+            btn.addEventListener('click',(e)=>{
+                const url = `./images/irangi_${btn.textContent}.png`;
+                const imgAlt = btn.dataset.alt;
+                img1.setAttribute('src',url);
+                img1.setAttribute('alt',imgAlt);
+                text1.textContent = imgAlt;
+            })
+        })
+    </script>
+</body>
+
+</html>

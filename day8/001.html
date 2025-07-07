@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Quiz</title>
+    <style>
+        button{}
+        button:hover{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="btn1">마우스를 올려보세요</button>
+    <button type="button" id="btn2">마우스를 올려보세요</button>
+    <!-- 1) 마우스를 올려보세요 텍스트 -> Mouse In 으로 변경 -->
+    <!-- 2) 마우스 치우면 원래 글자로 변경 -->
+    <script>
+
+        const btn1 = document.querySelector('#btn1');
+        const btn2 = document.querySelector('#btn2');
+
+        function mouseControl(elem){
+            const originalTxt = elem.textContent;
+            elem.addEventListener('mouseenter',(e)=>{
+                e.target.textContent = 'Mouse In!';
+            })
+            elem.addEventListener('mouseleave',(e)=>{
+                e.target.textContent = originalTxt;
+            })
+        }
+        mouseControl(btn1);
+        mouseControl(btn2);
+
+
+    </script>
+</body>
+</html>

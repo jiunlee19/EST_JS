@@ -1,0 +1,108 @@
+<!-- 자동캐러셀, 타이머, 시계 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        div#time{   
+            width: 400px;
+            background-color: darkslategray;
+            padding: 50px 50px;
+            border-radius: 30px;
+            color: white;
+            font-size: 3rem;
+            text-align: center;
+        }
+        
+        button.btnDesign{
+            width: 250px;
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px 10px;
+            border: 0;
+            border-radius: 15px;
+            color: white;
+        }
+        button.onBtn{
+            background-color: brown;
+        }
+        button.offBtn{
+            background-color: navy;
+        }
+        button.active{
+            cursor: pointer;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div id="time"></div>
+    <div class="btns">
+        <button class="onBtn btnDesign">시계 on</button>
+        <button class="offBtn btnDesign">시계 off</button>
+    </div>
+    
+
+    <script>
+        const time = document.querySelector('#time');
+        const onBtn = document.querySelector('.onBtn');
+        const offBtn = document.querySelector('.offBtn');
+
+        let clock = null;
+
+        function startClock(){
+            if(clock !== null) return;
+            clock = setInterval(()=>{
+                let date = new Date()
+                .toLocaleTimeString()
+                .replace('오전 ','')
+                .replace('오후 ','');
+
+                time.textContent = date;
+            },1000);
+        }
+
+        function stopClock(){
+            clearInterval(clock);
+            clock=null;
+        }
+
+        onBtn.addEventListener('mouseenter',(e)=>{
+            e.target.classList.add('active');
+        })
+        onBtn.addEventListener('mouseleave',(e)=>{
+            e.target.classList.remove('active');
+        })
+        offBtn.addEventListener('mouseenter',(e)=>{
+            e.target.classList.add('active');
+        })
+        offBtn.addEventListener('mouseleave',(e)=>{
+            e.target.classList.remove('active');
+        })
+        function hoverHandler(elem){
+            elem.addEventListener('mouseenter',(e)=>{
+                e.target.classList.add('active');
+            })
+            elem.addEventListener('mouseleave',(e)=>{
+                e.target.classList.remove('active');
+            })
+        }
+        hoverHandler(onBtn);
+        hoverHandler(offBtn);
+        onBtn.addEventListener('click',startClock);
+        offBtn.addEventListener('click',stopClock);
+        startClock();
+
+
+    </script>
+</body>
+</html>
