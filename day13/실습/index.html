@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나의 메모장</title>
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    form,
+    #memo-list>li {
+      width: 50%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    form>input,
+    form>textarea {
+      box-sizing: border-box;
+      width: 100%
+    }
+
+    form {
+      padding: 20px;
+      border-radius: 10px;
+      background-color: lightblue;
+      margin-bottom: 20px;
+    }
+
+    #memo-list {
+      margin-left: -40px;
+    }
+
+    #memo-list>li {
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background-color: lightgray;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: darkgray;
+      padding: 3px 5px;
+      color: white;
+      border: 1px solid gray;
+      border-radius: 2px;
+      margin: 5px 0 0;
+    }
+
+    button:hover {
+      background-color: navy;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>나의 메모장</h1>
+  <form id="memo-form">
+    <label for="title-input">제목</label>
+    <input type="text" id="title-input" required />
+    <label for="content-input">내용</label>
+    <textarea name="content-input" id="content-input"></textarea>
+    <button type="submit">저장하기</button>
+  </form>
+  <!-- 작성된 메모 목록 -->
+  <ul id="memo-list"></ul>
+  <script src="script.js"></script>
+</body>
+
+</html>
