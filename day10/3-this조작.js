@@ -15,6 +15,8 @@ const bot = {
 user.sayName(); // sayName() 속 this => user 객체
 user.sayName.call(bot); // sayName() 속 this => bot 객체
 
+// .call(null, ...["Hello", "Alice"]);
+
 // 2. apply()
 // call 과 동일하게 동작하지만, 인자를 배열로 받는다는 차이만 있다
 function introduce(age, hobby) {

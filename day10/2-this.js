@@ -76,7 +76,7 @@ const friend1 = new Friends("경현");
 // 6-2. new 키워드 없이 호출할 때
 const friend2 = Friends("유진"); // undefined
 console.log("new 없이 만든 인스턴스: ", friend2); // undefined
-console.log(window.name); // 전역변수 오염
+// console.log(window.name); // 전역변수 오염
 
 // 생성자 함수, 일반 함수에서의 this 결정 방식이 다르다!
 
