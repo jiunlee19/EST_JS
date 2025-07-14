@@ -26,9 +26,12 @@ const MEMO_KEY = "memo"; // 로컬스토리지 키
 // TODO 1: 페이지 로드 시 로컬스토리지에서 데이터 불러오기
 function loadMemoStorage() {
     // 로컬스토리지에서 메모 데이터 가져오기 getItem
+    let savedMemo = localStorage.getItem(MEMO_KEY);
     // 데이터가 있다면 memoData 배열에 저장
-    const savedData = localStorage.getItem(MEMO_KEY);
-    memoData = savedData ? JSON.parse(savedData) : [];
+    if (savedMemo) {
+        memoData = JSON.parse(savedMemo);
+    }
+    // 화면에 메모 목록 출력
     renderMemo();
 }
 
@@ -36,36 +39,26 @@ function loadMemoStorage() {
 function renderMemo() {
     // memoList 초기화
     memoList.innerHTML = "";
-
     // 메모가 없으면 "작성된 메모가 없습니다" 메시지 출력
+    // 메모가 있으면 반복문으로 각 메모를 화면에 출력
+    // 삭제 버튼에 이벤트 리스너 추가
     if (memoData.length === 0) {
-        memoList.innerHTML = `<li>아직 작성된 메모가 없습니다</li>`;
+        const li = document.createElement("li");
+        li.textContent = "작성된 메모가 없습니다.";
+        memoList.appendChild(li);
         return;
     }
-    // 메모가 있으면 반복문으로 각 메모를 화면에 출력
-    memoData.forEach((memo, index) => {
+    memoData.forEach((memo, i) => {
         const li = document.createElement("li");
-        li.innerHTML = `
-        <strong>${memo.title}</strong>
-        <span>${memo.content}</span>
-        <button data-index="${index}">삭제</button>
-      `;
+        li.innerHTML = `<strong>${memo.title}</strong><br/>${memo.content}<br/><button id="delete-btn" onclick="deleteMemo(${i})">삭제</button>`;
         memoList.appendChild(li);
-    });
-    // 삭제 버튼에 이벤트 리스너 추가
-    const deleteButtons = memoList.querySelectorAll("button");
-    deleteButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const index = parseInt(btn.dataset.index);
-            deleteMemo(index);
-        });
     });
 }
 
 // TODO 3: 로컬스토리지에 메모 데이터 저장하는 함수
-function saveMemoStorage(memoData) {
+function saveMemoStorage() {
     // memoData 배열을 JSON 문자열로 변환해서 로컬스토리지에 저장
-    localStorage.setItem(MEMO_KEY, JSON.stringify(memoData));
+    localStorage.setItem("memo", JSON.stringify(memoData));
 }
 
 // TODO 4: 폼 제출 이벤트 처리
@@ -73,24 +66,24 @@ memoForm.addEventListener("submit", (e) => {
     // 기본 제출 동작 방지
     e.preventDefault();
     // 입력값 가져오기 (trim() 사용)
-    // titleInput.value;
-    // contentInput.value;
+    const title1 = titleInput.value.trim();
+    const content1 = contentInput.value.trim();
     // 제목이 비어있으면 경고 메시지
-    const title = titleInput.value.trim();
-    const content = contentInput.value.trim();
-    if (!title || !content) {
-        alert("제목과 내용을 모두 입력해주세요");
+    if (title1 == "") {
+        console.error("제목을 추가해주세요");
         return;
     }
     // 새 메모 객체를 memoData 배열 맨 앞에 추가
+    const memoInput = {
+        title: title1,
+        content: content1,
+    };
+    memoData.unshift(memoInput);
     // 예: memoData.unshift({ title: "제목", content: "내용" });
-    const newMemo = { title, content };
-    memoData.unshift(newMemo);
     // 로컬스토리지 저장
-    saveMemoStorage(memoData);
+    saveMemoStorage();
     // 입력 필드 초기화
-    titleInput.value = "";
-    contentInput.value = "";
+    memoForm.reset();
     // 메모 목록 재렌더링
     renderMemo();
 });
@@ -100,7 +93,7 @@ function deleteMemo(index) {
     // 해당 인덱스의 메모를 배열에서 제거
     memoData.splice(index, 1);
     // 로컬스토리지 업데이트
-    saveMemoStorage(memoData);
+    saveMemoStorage();
     // 메모 목록 재렌더링
     renderMemo();
 }
