@@ -69,6 +69,8 @@ upgradeBtn.addEventListener("click", async () => {
         } catch (err) {
             resultText.textContent = "고급 기능 로드에 실패했습니다.";
             console.error(err);
+            resultText.textContent =
+                "[오류] 고급 계산기 기능을 로드할 수 없습니다.";
         }
     } else {
         advanceCalcSection.style.display = "none";
