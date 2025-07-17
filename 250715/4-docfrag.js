@@ -17,3 +17,4 @@ for (let i = 1; i <= 100; i++) {
 itemList.appendChild(docFrag);
 
 // 리스트가 많아질수록(내부 콘텐츠가 복잡해질수록) 성능 차이가 체감된다!!
+// 이점: repaint, reflow 방지

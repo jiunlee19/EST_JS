@@ -9,15 +9,15 @@ const $searchInput = document.getElementById("search-input");
 // TODO 1: 책 검색 함수 구현
 async function searchBooks() {
     // 검색어 가져오기
-    const keyword = $searchInput.value.trim();
+    const query = $searchInput.value.trim();
     // 빈 검색어 확인
-    if (keyword.length === 0) {
+    if (query.length === 0) {
         $bookList.innerHTML = "<li>검색어를 입력해주세요.</li>"; // 사용자에게 검색어 입력 요청 메시지 표시
         return; // 검색어가 없으면 함수 종료
     }
     // API 호출
     try {
-        const url = `${BOOK_URL}?query=${encodeURIComponent(keyword)}&size=10`;
+        const url = `${BOOK_URL}?query=${encodeURIComponent(query)}&size=10`;
         // fetch를 사용해서 API 호출하기
         const response = await fetch(url, {
             method: "GET",
@@ -32,7 +32,7 @@ async function searchBooks() {
         const data = await response.json(); // JSON 데이터로 변환하기
         if (data.documents.length === 0) {
             // 결과가 없다면 '검색 결과가 없습니다.' 메시지 표시
-            $bookList.innerHTML = "<li>검색어를 다시 입력해주세요</li>";
+            $bookList.innerHTML = "<li>검색 결과가 없습니다.</li>";
             return;
         }
         renderBooks(data.documents); // 검색 결과를 화면에 표시하기
