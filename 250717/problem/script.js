@@ -1,6 +1,3 @@
-const REST_API_KEY = "5cc91f5ec825ad954390d9af2de103ca"; // 여기에 **정확한 본인의 REST API 키**를 넣어주세요.
-const VCLIP_URL = "https://dapi.kakao.com/v2/search/vclip"; // 동영상 검색 API 엔드포인트
-
 // 무한 스크롤 상태 관리 변수
 let currentPage = 1; // 현재 페이지 번호
 let currentQuery = ""; // 현재 검색어
