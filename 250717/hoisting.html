@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoisting</title>
+</head>
+
+<body>
+    <!-- 우아한 성능저하 -->
+
+    <video src="">
+        <source src=".mp4" type="video/mp4">
+        <source src=".webm" type="video/webm">
+
+        <p>브라우저가 HTML video 태그를 지원하지 않습니다.
+            <a href="">여기에 가시면 비디오를 보실 수 있습니다.</a>
+        </p>
+    </video>
+
+    <!-- 점진적 향상 기법 -->
+    <picture>
+        <source srcset="baby.webp" type="image/webp">
+        <source srcset="baby.avif" type="image/avif">
+        <img src="baby.jpeg" alt="귀여운 아기사진">
+    </picture>
+
+    <script>
+        /*console.log(testValue);
+        var testValue = 100;*/
+
+        console.log(test());
+        console.log(test2());
+
+        function test() {
+            return 'test';
+        }
+        var test2 = function () {
+            return 'test2';
+        }
+    </script>
+</body>
+
+</html>
